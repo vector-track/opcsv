@@ -1,0 +1,33 @@
+<html>
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/milligram/1.3.0/milligram.css">
+  <body>
+    <h2>{{ name }}:</h2>
+    <table style="width:95%">
+      <tr>
+        {% for key in csv_row %}
+          <th>{{ key }}</th>
+        {% endfor %}
+        {% for annotation in annotations %}
+          <th>{{ annotation.name }}</th>
+        {% endfor %}
+      </tr>
+      <tr>
+        {% for key in csv_row %}
+          <th>{{ csv_row[key] }}</th>
+        {% endfor %}
+        {% for annotation in annotations %}
+          {% if annotation.html %}
+            <th>{{ annotation.format | safe }}</th>
+          {% else %}
+            <th>{{ annotation.format }}</th>
+          {% endif %}
+
+        {% endfor %}
+      </tr>
+    </table>
+
+    <a href='/csv/next'>NEXT</a>
+  </body>
+</html>
